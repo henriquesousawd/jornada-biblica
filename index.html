@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f5f3ec">
+<meta name="description" content="Sua jornada pela Bíblia, com progresso salvo e áudio offline.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="styles.css?v=3">
+<script>
+  /* Aplica o tema salvo antes da primeira pintura, para a tela não piscar. */
+  (function(){try{var t=localStorage.getItem('jb-theme');if(t==='sepia'||t==='night')document.documentElement.setAttribute('data-theme',t)}catch(e){}})();
+</script>
+<title>Jornada Bíblica</title>
+</head>
+<body>
+<div class="shell">
+
+  <!-- Biblioteca: barra lateral no computador, menu deslizante no celular -->
+  <aside class="sidebar" id="sidebar" aria-label="Biblioteca">
+    <div class="sidebar-head">
+      <div class="brand">
+        <div class="mark" aria-hidden="true">✦</div>
+        <div><strong>Jornada Bíblica</strong><small>Sua caminhada pela Palavra</small></div>
+      </div>
+      <button id="closeMenu" class="icon-btn close-menu" type="button" aria-label="Fechar lista de livros">✕</button>
+    </div>
+    <div class="group-label">SUA BIBLIOTECA</div>
+    <label class="search-label"><span aria-hidden="true">⌕</span><input id="search" placeholder="Buscar um livro..." aria-label="Buscar livro" autocomplete="off"></label>
+    <nav id="books" aria-label="Livros da Bíblia"></nav>
+    <div class="sidebar-bottom"><span class="live-dot"></span> Seu progresso fica salvo neste aparelho</div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+
+  <main class="main">
+    <header class="topbar">
+      <button id="menuBtn" class="menu-btn" type="button" aria-controls="sidebar" aria-expanded="false"><span aria-hidden="true">☰</span> Livros</button>
+      <span class="topbar-title" id="topTitle" aria-hidden="true"></span>
+      <nav class="top-tabs" aria-label="Seções principais">
+        <button class="top-tab is-active" type="button" data-view="bible">Bíblia</button>
+        <button class="top-tab" type="button" data-view="hymns">Hinos</button>
+      </nav>
+      <span class="eyebrow topbar-eyebrow">A PALAVRA TODOS OS DIAS</span>
+      <div class="top-actions">
+        <button id="themeBtn" class="outline" type="button" aria-label="Mudar o tema de cores">☀️ Claro</button>
+        <button id="installBtn" class="outline" hidden>＋ Instalar aplicativo</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow gold">UM CAPÍTULO DE CADA VEZ</div>
+      <h1>Continue sua<br><em>jornada de fé.</em></h1>
+      <p>Leia, escute e retome exatamente de onde parou.</p>
+      <button id="resumeBtn" class="primary">▶ Continuar de onde parei</button>
+    </section>
+
+    <section class="stats">
+      <div class="stat-main">
+        <small>SEU PROGRESSO</small>
+        <strong id="progressPct">0%</strong>
+        <div class="progress"><div id="progressFill"></div></div>
+        <span id="progressText">0 de 1.189 capítulos concluídos</span>
+      </div>
+      <div class="stat-number">
+        <small>CAPÍTULOS CONCLUÍDOS</small>
+        <strong id="completedCount">0 <i>/ 1189</i></strong>
+      </div>
+    </section>
+
+    <section class="reader" aria-labelledby="chapterTitle">
+      <div class="reader-head">
+        <div>
+          <span class="eyebrow gold">LEITURA E NARRAÇÃO</span>
+          <h2 id="chapterTitle">Gênesis 1</h2>
+          <p id="edition">Almeida de 1911 • Demonstração de texto</p>
+        </div>
+        <div class="nav-chapter">
+          <button id="previous" aria-label="Capítulo anterior">←</button>
+          <button id="next" aria-label="Próximo capítulo">→</button>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <label>Capítulo <select id="chapterSelect"></select></label>
+        <div class="font-size" role="group" aria-label="Tamanho da letra">
+          <button id="fontMinus" class="ghost" aria-label="Diminuir fonte">A−</button>
+          <button id="fontPlus" class="ghost" aria-label="Aumentar fonte">A+</button>
+        </div>
+        <div class="import-text">
+          <button class="ghost" id="textLoad">Importar Bíblia JSON</button>
+          <input id="textFile" type="file" accept="application/json,.json" hidden>
+        </div>
+      </div>
+
+      <article id="verses" class="verses" aria-live="polite"></article>
+
+      <div class="chapter-actions">
+        <button id="complete" class="secondary">✓ Marcar capítulo como concluído</button>
+        <div class="chapter-nav">
+          <button class="ghost" type="button" data-go="-1">← Anterior</button>
+          <button class="ghost" type="button" data-go="1">Próximo →</button>
+        </div>
+        <button id="clear" class="linklike">Reiniciar meu progresso</button>
+      </div>
+    </section>
+
+    <section class="hymns" id="hymns" aria-labelledby="hymnsTitle">
+      <div class="section-heading">
+        <div><span class="eyebrow gold">LOUVOR E ADORAÇÃO</span><h2 id="hymnsTitle">Harpa em cifra</h2><p>Escolha um hino e altere o tom para acompanhar com seu instrumento.</p></div>
+        <div class="hymn-heading-actions"><a class="hymn-online" href="https://cifrasgospelonline.com.br/harpa-crista?utm_source=chatgpt.com" target="_blank" rel="noopener">Abrir 640 cifras online ↗</a><span class="hymn-badge" aria-hidden="true">♫</span></div>
+      </div>
+      <div class="hymn-toolbar">
+        <label class="hymn-search">⌕ <input id="hymnSearch" placeholder="Buscar hino..." aria-label="Buscar hino"></label>
+        <label>Hino <select id="hymnSelect" aria-label="Selecionar hino"></select></label>
+        <label>Tom <select id="hymnKey" aria-label="Selecionar tom"></select></label>
+        <button id="hymnImport" class="ghost" type="button">Importar cifra</button>
+        <input id="hymnFile" type="file" accept="application/json,.json,.cho,.chordpro,.txt" hidden>
+        <button id="hymnExport" class="ghost" type="button">Exportar acervo</button>
+      </div>
+      <div class="hymn-meta"><strong id="hymnTitle"></strong><span id="hymnOriginalKey"></span><a id="hymnSource" class="hymn-source" href="#" target="_blank" rel="noopener" hidden>Ver cifra original ↗</a><button id="hymnReset" class="linklike" type="button">Voltar ao tom original</button></div>
+      <article id="hymnBody" class="hymn-body" aria-live="polite"></article>
+    </section>
+
+    <section class="guide">
+      <h3>Como usar áudios humanos</h3>
+      <p>Selecione um arquivo MP3, M4A, WAV ou OGG de uma narração humana que você tenha direito de usar. Ele é guardado neste aparelho para funcionar offline. Importe um arquivo para cada capítulo que desejar ouvir. Para publicar áudios para outras pessoas, será necessário conferir a licença da gravação.</p>
+    </section>
+
+    <footer>Versão inicial • Dados guardados localmente no navegador • Sem conta e sem rastreamento</footer>
+  </main>
+</div>
+
+<div class="player">
+  <div class="player-inner">
+    <div class="player-icon" aria-hidden="true">♫</div>
+    <div class="track"><strong id="trackTitle">Gênesis 1</strong><span id="audioStatus">Importe uma narração humana para começar</span></div>
+    <label class="upload" title="Importar a narração deste capítulo">＋ Áudio<span class="long-label"> do capítulo</span><input id="audioFile" type="file" accept="audio/*,.mp3,.m4a,.ogg,.wav" hidden></label>
+    <button id="play" class="play" aria-label="Reproduzir ou pausar">▶</button>
+    <div class="timeline"><span id="elapsed">0:00</span><input id="seek" type="range" min="0" max="1000" value="0" aria-label="Posição do áudio"><span id="duration">0:00</span></div>
+    <button id="speed" class="speed">1×</button>
+    <button id="voiceToggle" class="voice-toggle" type="button" aria-expanded="false">🔊 Voz</button>
+  </div>
+  <audio id="audio" preload="metadata"></audio>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="app.js?v=3"></script>
+</body>
+</html>

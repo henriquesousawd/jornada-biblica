@@ -1,0 +1,11 @@
+Implemente no meu site suporte OFFLINE para a Harpa Cristã com fonte local `harpa-crista.json`.
+
+1. Carregue a coleção de 640 identificadores, sem depender de acesso à internet.
+2. Crie busca por número/título, filtro por status, abertura de hino, visualização de cifra ChordPro (quando disponível), aumento de fonte, transposição de tom por semitons e ajuste de contraste.
+3. Trate `titulo`, `tom_original`, `cifra_chordpro` e demais campos null como conteúdo ainda não fornecido: não invente nem baixe letras/cifras automaticamente.
+4. Permita importar arquivos JSON ou .cho/.chordpro locais cujo uso tenha sido autorizado pelo titular ou que estejam em domínio público. Valide número 1..640 e formato dos acordes; preserve a origem e a licença por hino. Inclua exportação e backup do acervo local.
+5. Para PWA, pré-cacheie arquivos locais no service worker e garanta funcionamento em modo avião. Não busque cifras em sites externos durante o funcionamento.
+6. Preserve os dados importados pelo usuário ao atualizar a aplicação. Dê preferência a IndexedDB para os hinos importados e ao JSON da distribuição como base.
+7. Implemente estados de carregamento, vazio, erro e teste de funcionamento offline.
+
+Observação: o arquivo contém 640 registros-base, mas não inclui letras, melodias ou arranjos cifrados de terceiros.

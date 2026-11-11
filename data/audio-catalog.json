@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "description": "Catálogo gerado pelo aplicativo para os 66 livros e 1.189 capítulos. Áudio externo só é preenchido após confirmação de licença.",
+  "licensePolicy": "unverified-by-default",
+  "books": [
+    {"bookId":"GEN","bookName":"Gênesis","chapters":50},
+    {"bookId":"EXO","bookName":"Êxodo","chapters":40},
+    {"bookId":"LEV","bookName":"Levítico","chapters":27},
+    {"bookId":"NUM","bookName":"Números","chapters":36},
+    {"bookId":"DEU","bookName":"Deuteronômio","chapters":34},
+    {"bookId":"JOS","bookName":"Josué","chapters":24},
+    {"bookId":"JDG","bookName":"Juízes","chapters":21},
+    {"bookId":"RUT","bookName":"Rute","chapters":4},
+    {"bookId":"MAT","bookName":"Mateus","chapters":28},
+    {"bookId":"MRK","bookName":"Marcos","chapters":16},
+    {"bookId":"LUK","bookName":"Lucas","chapters":24},
+    {"bookId":"JHN","bookName":"João","chapters":21},
+    {"bookId":"ACT","bookName":"Atos","chapters":28},
+    {"bookId":"ROM","bookName":"Romanos","chapters":16},
+    {"bookId":"REV","bookName":"Apocalipse","chapters":22}
+  ],
+  "note": "A interface usa a lista completa de 66 livros em app.js; este arquivo documenta os registros-base e não inventa URLs de áudio."
+}

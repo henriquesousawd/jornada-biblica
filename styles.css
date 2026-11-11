@@ -1,0 +1,414 @@
+/* ==========================================================================
+   Jornada Bíblica — visual claro e suave, pensado para leitura longa.
+   Temas: claro (padrão), sépia e noite. Tudo usa as variáveis abaixo.
+   ========================================================================== */
+
+:root{
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sidebar-w:288px;
+
+  --bg:#f5f3ec;
+  --surface:#fffdf8;
+  --surface-2:#f0ede3;
+  --line:#e2ddcd;
+  --text:#2c3732;
+  --muted:#66746c;
+
+  --accent:#3f7a5e;
+  --accent-hover:#356a50;
+  --accent-strong:#2f6a50;
+  --accent-soft:#e1eee6;
+  --on-accent:#ffffff;
+
+  --gold:#8a6a28;
+  --gold-soft:#f3e8cc;
+
+  --hero-a:#e3efe6;
+  --hero-b:#f7efd8;
+  --shadow:rgba(52,66,50,.10);
+  --ring:rgba(63,122,94,.45);
+  color-scheme:light;
+}
+
+:root[data-theme="sepia"]{
+  --bg:#f1e7d3;
+  --surface:#f8f0df;
+  --surface-2:#eadfc6;
+  --line:#dacdae;
+  --text:#3b3126;
+  --muted:#76664f;
+  --accent:#7a5c34;
+  --accent-hover:#684c28;
+  --accent-strong:#6a4d28;
+  --accent-soft:#eadbbd;
+  --on-accent:#fffaf0;
+  --gold:#7d5f22;
+  --gold-soft:#ecdcb4;
+  --hero-a:#ead9b8;
+  --hero-b:#f5e9cc;
+  --shadow:rgba(80,60,30,.12);
+  --ring:rgba(122,92,52,.45);
+}
+
+:root[data-theme="night"]{
+  --bg:#141f1c;
+  --surface:#1b2a26;
+  --surface-2:#22342f;
+  --line:#30463f;
+  --text:#e2e8df;
+  --muted:#9db1a6;
+  --accent:#86c6a3;
+  --accent-hover:#9bd3b3;
+  --accent-strong:#a5dbbb;
+  --accent-soft:#27433a;
+  --on-accent:#10211a;
+  --gold:#d9bb78;
+  --gold-soft:#34402f;
+  --hero-a:#1f3a31;
+  --hero-b:#2a3a2c;
+  --shadow:rgba(0,0,0,.35);
+  --ring:rgba(134,198,163,.55);
+  color-scheme:dark;
+}
+
+/* ---------- Base ---------- */
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.5;font-synthesis:none;-webkit-tap-highlight-color:transparent}
+body.menu-open{overflow:hidden}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;touch-action:manipulation}
+button:disabled{opacity:.35;cursor:default}
+:focus-visible{outline:3px solid var(--ring);outline-offset:2px}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.eyebrow.gold{color:var(--gold)}
+
+/* ---------- Botões e campos ---------- */
+.primary,.secondary{
+  background:var(--accent);color:var(--on-accent);border:0;border-radius:12px;
+  min-height:46px;padding:12px 22px;font-size:14px;font-weight:650;
+  transition:background .2s,transform .15s;
+}
+.primary:hover,.secondary:hover{background:var(--accent-hover)}
+.primary:active,.secondary:active{transform:scale(.98)}
+.primary{margin-top:8px}
+.ghost,.outline{
+  background:var(--surface);border:1px solid var(--line);color:var(--text);
+  border-radius:10px;min-height:40px;padding:8px 14px;font-size:13px;
+  transition:background .2s,border-color .2s;
+}
+.ghost:hover,.outline:hover{background:var(--surface-2);border-color:var(--accent)}
+.outline{color:var(--accent-strong);font-weight:600}
+.linklike{background:none;border:0;color:var(--muted);font-size:13px;text-decoration:underline;text-underline-offset:3px;min-height:40px;padding:0 4px}
+.linklike:hover{color:var(--text)}
+select,
+.search-label input{
+  background:var(--surface);color:var(--text);border:1px solid var(--line);
+  border-radius:10px;min-height:40px;padding:8px 10px;max-width:100%;
+}
+select{cursor:pointer}
+.icon-btn{
+  width:44px;height:44px;border-radius:12px;border:1px solid var(--line);
+  background:var(--surface);color:var(--text);font-size:16px;display:grid;place-items:center;
+}
+
+/* ---------- Estrutura ---------- */
+.shell{display:grid;grid-template-columns:var(--sidebar-w) minmax(0,1fr);min-height:100vh}
+
+/* ---------- Barra lateral (biblioteca) ---------- */
+.sidebar{
+  background:var(--surface-2);border-right:1px solid var(--line);
+  padding:22px 14px 14px;display:flex;flex-direction:column;gap:14px;
+  position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;
+}
+.sidebar-head{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:0 6px}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand strong{display:block;font-size:16px;font-family:var(--serif)}
+.brand small{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+.mark{
+  flex:none;width:42px;height:42px;border-radius:13px;display:grid;place-items:center;
+  background:var(--gold-soft);color:var(--gold);font-size:22px;border:1px solid var(--line);
+}
+.group-label{padding:6px 8px 0;font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--muted)}
+.search-label{
+  display:flex;align-items:center;gap:8px;padding:0 12px;background:var(--surface);
+  border:1px solid var(--line);border-radius:12px;color:var(--muted);
+}
+.search-label:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px var(--ring)}
+.search-label input{flex:1;min-width:0;border:0;background:none;padding:10px 0;font-size:14px;outline:0}
+#books{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--line) transparent;padding-right:2px}
+.testament{
+  position:sticky;top:0;z-index:1;background:var(--surface-2);
+  font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--gold);padding:14px 10px 8px;
+}
+.book{
+  display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;
+  min-height:42px;padding:9px 12px;border:0;border-radius:10px;background:transparent;
+  color:var(--text);text-align:left;font-size:14px;
+}
+.book:hover{background:var(--surface)}
+.book.selected{background:var(--accent-soft);color:var(--accent-strong);font-weight:650;box-shadow:inset 3px 0 0 var(--accent)}
+.book small{color:var(--muted);font-size:12px;font-weight:500}
+.sidebar-bottom{font-size:12px;color:var(--muted);padding:8px 8px 2px;border-top:1px solid var(--line)}
+.live-dot{display:inline-block;background:#58a97d;width:8px;height:8px;border-radius:50%;margin-right:6px}
+.close-menu{display:none}
+.scrim{position:fixed;inset:0;background:rgba(28,38,32,.38);opacity:0;pointer-events:none;transition:opacity .25s;z-index:90}
+
+/* ---------- Conteúdo principal ---------- */
+.main{
+  width:100%;max-width:920px;margin:0 auto;min-width:0;
+  padding:0 clamp(16px,4vw,40px) calc(var(--player-h,150px) + 36px);
+}
+.topbar{display:flex;align-items:center;gap:12px;min-height:72px}
+.topbar-eyebrow{margin-right:auto}
+.top-tabs{display:flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:12px;background:var(--surface-2)}
+.top-tab{border:0;border-radius:9px;background:transparent;color:var(--muted);padding:8px 14px;font-size:13px;font-weight:700;cursor:pointer}
+.top-tab:hover{color:var(--text);background:var(--surface)}.top-tab.is-active{background:var(--accent);color:var(--on-accent);box-shadow:0 2px 6px var(--shadow)}
+.main.view-hymns .hero,.main.view-hymns .stats,.main.view-hymns .reader,.main.view-hymns .guide,.main.view-hymns>footer{display:none}
+.main.view-bible .hymns{display:none}
+.top-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.menu-btn,.topbar-title{display:none}
+
+/* Cabeçalho de boas-vindas */
+.hero{
+  position:relative;overflow:hidden;border:1px solid var(--line);border-radius:24px;
+  background:linear-gradient(135deg,var(--hero-a),var(--hero-b));
+  padding:clamp(24px,5vw,48px);box-shadow:0 10px 30px var(--shadow);
+}
+.hero::after{
+  content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;
+  background:radial-gradient(circle,var(--gold-soft) 0,transparent 70%);opacity:.9;pointer-events:none;
+}
+.hero>*{position:relative;z-index:1}
+.hero h1{font-family:var(--serif);font-size:clamp(30px,6.5vw,50px);font-weight:500;line-height:1.14;margin:12px 0 10px}
+.hero h1 em{color:var(--accent-strong);font-style:italic}
+.hero p{color:var(--muted);font-size:16px;margin:0 0 14px;max-width:34em}
+
+/* Progresso */
+.stats{display:grid;grid-template-columns:1.6fr 1fr;gap:14px;margin:16px 0 28px}
+.stats>div{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 4px 16px var(--shadow)}
+.stats small{display:block;font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--muted)}
+.stats strong{display:block;font-family:var(--serif);font-size:30px;font-weight:600;margin:8px 0 2px}
+.stats i{font-family:var(--sans);font-size:14px;color:var(--muted);font-style:normal;font-weight:400}
+.stats span{color:var(--muted);font-size:13px}
+.progress{height:8px;background:var(--surface-2);border:1px solid var(--line);border-radius:99px;overflow:hidden;margin:12px 0 10px}
+.progress div{height:100%;width:0;background:linear-gradient(90deg,var(--accent),#7fb89a);border-radius:99px;transition:width .5s}
+
+/* ---------- Leitor ---------- */
+.reader{background:var(--surface);border:1px solid var(--line);border-radius:22px;box-shadow:0 10px 30px var(--shadow);overflow:hidden}
+.reader-head{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:22px clamp(16px,4vw,32px) 16px}
+.reader-head h2{font:600 clamp(26px,5vw,34px)/1.2 var(--serif);margin:6px 0 4px}
+.reader-head p{margin:0;color:var(--muted);font-size:13px}
+.nav-chapter{display:flex;gap:8px;flex:none}
+.nav-chapter button{
+  width:46px;height:46px;border-radius:12px;background:var(--accent-soft);color:var(--accent-strong);
+  border:1px solid var(--line);font-size:18px;
+}
+.nav-chapter button:hover:not(:disabled){background:var(--accent);color:var(--on-accent)}
+.toolbar{
+  display:flex;align-items:center;gap:10px 14px;flex-wrap:wrap;
+  padding:12px clamp(16px,4vw,32px);background:var(--surface-2);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.toolbar label{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.font-size{display:flex;gap:6px}
+.font-size .ghost{min-width:46px;font-weight:700}
+.import-text{margin-left:auto}
+
+.verses{max-width:46rem;margin:0 auto;padding:clamp(18px,4vw,36px) clamp(12px,4vw,36px);font:400 20px/1.9 var(--serif);color:var(--text)}
+.verses p{margin:0 0 4px;padding:8px 12px;border-radius:12px;transition:background .25s,box-shadow .25s;overflow-wrap:anywhere}
+.verses sup{font:700 .6em var(--sans);color:var(--gold);margin-right:.8em;vertical-align:super}
+@media (hover:hover){.verses p:hover{background:var(--surface-2)}}
+.verses p.speech-active{background:var(--accent-soft);box-shadow:inset 4px 0 0 var(--accent)}
+.empty{font:15px/1.7 var(--sans);color:var(--muted);background:var(--surface-2);border:1px dashed var(--line);border-radius:14px;padding:20px}
+
+.chapter-actions{
+  display:flex;align-items:center;justify-content:space-between;gap:12px 18px;flex-wrap:wrap;
+  padding:18px clamp(16px,4vw,32px) 22px;border-top:1px solid var(--line);
+}
+.secondary{margin:0}
+.chapter-nav{display:flex;gap:8px}
+
+/* ---------- Ferramentas de voz e áudio (guia) ---------- */
+.guide{
+  margin-top:28px;background:var(--surface);border:1px solid var(--line);border-radius:20px;
+  padding:clamp(18px,4vw,28px);color:var(--muted);font-size:14px;line-height:1.75;box-shadow:0 4px 16px var(--shadow);
+}
+.guide h3{color:var(--text);font:600 18px var(--serif);margin:0 0 8px}
+.guide p{margin:0 0 12px}
+.guide>div{margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
+.guide>div:first-of-type{margin-top:22px}
+.guide .upload{display:inline-block;margin:4px 0 8px}
+.config-status{font-size:13px;color:var(--accent-strong)}
+.provider-status small{color:var(--muted)}
+
+.speech-reader{display:flex;flex-wrap:wrap;gap:12px 14px;align-items:flex-end}
+.speech-reader h3,.speech-reader p{flex:1 1 100%;margin:0}
+.speech-reader label{display:flex;flex-direction:column;gap:5px;font-size:12px;font-weight:600;color:var(--muted)}
+.speech-reader label:has(input[type=checkbox]){flex-direction:row;align-items:center;gap:8px;font-weight:500;min-height:40px;font-size:13px}
+.speech-reader input[type=checkbox]{width:20px;height:20px;accent-color:var(--accent)}
+.speech-reader label:first-of-type{flex:1 1 260px}
+.speech-reader select{width:100%;min-width:0}
+.speech-reader>div:last-child{flex:1 1 100%;display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;border:0}
+.speech-reader>div:last-child button{min-height:44px}
+
+/* ---------- Player fixo ---------- */
+.player{
+  position:fixed;left:var(--sidebar-w);right:0;bottom:0;z-index:50;
+  background:var(--surface);background:color-mix(in srgb,var(--surface) 94%,transparent);
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);box-shadow:0 -8px 28px var(--shadow);
+  padding:12px clamp(14px,3vw,32px) calc(12px + env(safe-area-inset-bottom));
+}
+.player-inner{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;max-width:960px;margin:0 auto}
+.player-icon{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:var(--gold-soft);color:var(--gold);font-size:20px}
+.track{flex:1 1 170px;min-width:0;display:flex;flex-direction:column;gap:2px}
+.track strong{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.track span{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.upload{
+  flex:none;display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 14px;
+  border:1px dashed var(--accent);border-radius:10px;color:var(--accent-strong);background:var(--accent-soft);
+  font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;gap:.3em;
+}
+.upload:hover{background:var(--surface-2)}
+.play{flex:none;width:48px;height:48px;border:0;border-radius:50%;background:var(--accent);color:var(--on-accent);font-size:17px;box-shadow:0 4px 12px var(--shadow)}
+.play:hover{background:var(--accent-hover)}
+.transport{flex:none;min-width:48px;min-height:44px;padding:0 10px;border-radius:12px;border:1px solid var(--line);background:var(--surface-2);color:var(--text);font-size:13px;white-space:nowrap}
+.transport:hover{border-color:var(--accent)}
+.timeline{flex:2 1 220px;min-width:0;display:flex;align-items:center;gap:10px;color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+.timeline input{flex:1;min-width:0;accent-color:var(--accent);height:28px}
+select.speed{flex:none;min-height:44px;padding:0 8px;font-size:13px;font-weight:600}
+.voice-toggle{display:none;flex:none;min-height:44px;padding:0 12px;border-radius:12px;border:1px solid var(--line);background:var(--surface-2);font-size:13px}
+.voice-toggle[aria-expanded="true"]{background:var(--accent-soft);color:var(--accent-strong);border-color:var(--accent)}
+
+.speech-dock{
+  order:20;flex:1 1 100%;display:flex;align-items:center;gap:8px;min-width:0;
+  padding:10px 0 0;border-top:1px solid var(--line);overflow-x:auto;scrollbar-width:thin;
+}
+.speech-dock-label{font-size:12px;font-weight:700;color:var(--muted);white-space:nowrap}
+.speech-dock select{flex:0 1 260px;min-width:160px;min-height:40px;font-size:13px}
+.speech-dock button{flex:none;min-height:40px;padding:0 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);color:var(--text);font-size:13px;white-space:nowrap}
+.speech-dock button:hover{border-color:var(--accent)}
+.speech-dock button:nth-of-type(2){background:var(--accent);color:var(--on-accent);border-color:var(--accent);font-weight:650}
+#dockStatusFinal,#dockSpeechStatus{display:none}
+
+.toast{
+  position:fixed;left:50%;bottom:calc(var(--player-h,140px) + 14px);transform:translate(-50%,8px);
+  max-width:min(92vw,460px);background:var(--text);color:var(--bg);padding:12px 18px;border-radius:12px;
+  font-size:14px;opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;z-index:120;text-align:center;
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+footer{font-size:12px;color:var(--muted);margin-top:26px;text-align:center}
+
+/* ==========================================================================
+   Celular e tablet pequeno
+   ========================================================================== */
+@media (max-width:900px){
+  :root{--sidebar-w:0px}
+  html{scroll-padding-top:68px}
+  .shell{grid-template-columns:minmax(0,1fr)}
+
+  /* Biblioteca vira um menu que desliza da esquerda */
+  .sidebar{
+    position:fixed;inset:0 auto 0 0;width:min(86vw,340px);height:100%;z-index:100;
+    transform:translateX(-102%);visibility:hidden;
+    transition:transform .28s ease,visibility 0s linear .28s;
+    padding:max(16px,env(safe-area-inset-top)) 14px max(14px,env(safe-area-inset-bottom));
+    box-shadow:8px 0 30px var(--shadow);
+  }
+  body.menu-open .sidebar{transform:none;visibility:visible;transition:transform .28s ease,visibility 0s}
+  body.menu-open .scrim{opacity:1;pointer-events:auto}
+  .close-menu{display:grid}
+  .book{min-height:48px;font-size:15px}
+
+  /* Barra superior fixa com acesso rápido */
+  .topbar{
+    position:sticky;top:0;z-index:30;min-height:60px;margin:0 calc(-1 * clamp(16px,4vw,40px));
+    padding:max(8px,env(safe-area-inset-top)) clamp(16px,4vw,40px) 8px;
+    background:var(--bg);background:color-mix(in srgb,var(--bg) 92%,transparent);
+    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);
+  }
+  .menu-btn{
+    display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border-radius:12px;
+    background:var(--accent);color:var(--on-accent);border:0;font-size:14px;font-weight:650;flex:none;
+  }
+  .topbar-title{display:block;flex:1;min-width:0;font:600 16px var(--serif);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
+  .topbar-eyebrow{display:none}
+  .top-actions{flex:none;flex-wrap:nowrap}
+  .top-actions .outline{min-height:44px;padding:0 10px;font-size:12px}
+  #themeBtn .t-name{display:none}
+  #themeBtn{font-size:18px;min-width:44px}
+
+  .main{padding-bottom:calc(var(--player-h,150px) + 28px)}
+  .hero{border-radius:20px;margin-top:14px}
+  .hero p{font-size:15px}
+  .hero .primary{width:100%}
+  .stats{gap:10px;margin:12px 0 22px}
+  .stats>div{padding:16px;border-radius:16px}
+  .stats strong{font-size:26px}
+
+  .reader{border-radius:18px}
+  .reader-head{padding:18px 16px 14px}
+  .toolbar{padding:10px 16px;gap:10px}
+  .toolbar label{flex:1 1 auto}
+  .toolbar select{flex:1;min-height:44px}
+  .font-size .ghost{min-height:44px}
+  .import-text{flex:1 1 100%;margin:0}
+  .import-text .ghost{width:100%;min-height:44px}
+  .verses{font-size:19px;line-height:1.85;padding:16px 8px}
+  .verses p{padding:8px 10px}
+
+  .chapter-actions{flex-direction:column;align-items:stretch;padding:16px}
+  .chapter-actions .secondary{width:100%}
+  .chapter-nav{display:grid;grid-template-columns:1fr 1fr}
+  .chapter-nav .ghost{min-height:48px}
+  .linklike{align-self:center}
+
+  .guide{border-radius:16px}
+  .speech-reader label:first-of-type{flex:1 1 100%}
+  .speech-reader label{flex:1 1 40%}
+  .speech-reader>div:last-child button{flex:1 1 40%}
+
+  /* Player compacto: informações, linha do tempo e controles */
+  .player{padding:10px 14px calc(10px + env(safe-area-inset-bottom));border-radius:18px 18px 0 0}
+  .player-inner{gap:8px;justify-content:center}
+  .player-icon,.long-label{display:none}
+  .track{order:1;flex:1 1 0}
+  .upload{order:2}
+  .timeline{order:3;flex:1 1 100%}
+  #back10{order:4}
+  .play{order:5}
+  #forward10{order:6}
+  select.speed{order:7}
+  .voice-toggle{order:8;display:inline-flex;align-items:center}
+  .speech-dock{order:9;display:none;flex-wrap:wrap;overflow:visible;padding-top:10px}
+  .player.voice-open .speech-dock{display:flex}
+  .speech-dock-label{display:none}
+  .speech-dock select{flex:1 1 100%;min-height:44px}
+  .speech-dock button{flex:1 1 30%;min-height:44px}
+  .toast{bottom:calc(var(--player-h,150px) + 12px)}
+}
+
+@media (max-width:420px){
+  .reader-head{flex-wrap:wrap}
+  .nav-chapter{width:100%}
+  .nav-chapter button{flex:1}
+  .stats small{font-size:10px}
+  .stats strong{font-size:24px}
+  .verses{font-size:18px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition-duration:.01ms!important;animation-duration:.01ms!important;scroll-behavior:auto!important}
+}
+
+/* Harpa em cifra */
+.hymns{margin-top:28px;padding:clamp(20px,4vw,32px);border:1px solid var(--line);border-radius:20px;background:var(--surface);box-shadow:0 8px 24px var(--shadow)}
+.section-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:20px}.section-heading h2{margin:6px 0 4px;font-family:var(--serif);font-size:clamp(25px,4vw,34px);font-weight:500}.section-heading p{margin:0;color:var(--muted);font-size:14px}.hymn-heading-actions{display:flex;align-items:center;gap:12px}.hymn-online{color:var(--accent-strong);font-size:12px;font-weight:700;text-decoration:none}.hymn-online:hover{text-decoration:underline}.hymn-badge{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:var(--gold-soft);color:var(--gold);font-size:24px}
+.hymn-toolbar{display:flex;gap:10px;align-items:end;flex-wrap:wrap;margin:24px 0 14px}.hymn-toolbar label{display:grid;gap:5px;color:var(--muted);font-size:12px;font-weight:650}.hymn-toolbar select{min-width:150px}.hymn-search{display:flex!important;align-items:center;gap:8px;flex:1;min-width:190px;padding:0 10px;border:1px solid var(--line);border-radius:10px;background:var(--surface-2);font-size:18px!important}.hymn-search input{width:100%;border:0;outline:0;background:transparent;padding:9px 0;color:var(--text)}
+.hymn-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 14px;border-radius:12px;background:var(--accent-soft);color:var(--accent-strong)}.hymn-meta span{font-size:13px;color:var(--muted)}.hymn-meta .linklike{margin-left:auto;color:var(--accent-strong)}.hymn-body{margin-top:18px;padding:20px clamp(14px,3vw,28px);border:1px solid var(--line);border-radius:14px;background:var(--surface-2);font-family:var(--serif);font-size:clamp(17px,2.4vw,21px);line-height:1.75;white-space:pre-wrap}.hymn-body .chord{color:var(--accent-strong);font-family:var(--sans);font-size:.75em;font-weight:800;vertical-align:super;margin:0 1px}.hymn-body .verse-label{display:block;margin-top:14px;color:var(--gold);font:700 11px var(--sans);letter-spacing:.12em;text-transform:uppercase}.hymn-body .intro{color:var(--muted);font:italic 14px var(--sans);margin-bottom:8px}
+.hymn-source{color:var(--accent-strong);font-size:13px;font-weight:700;text-decoration:none}.hymn-source:hover{text-decoration:underline}
+@media(max-width:600px){.hymn-toolbar{align-items:stretch}.hymn-search{flex-basis:100%}.hymn-toolbar label:not(.hymn-search){flex:1}.hymn-toolbar select{min-width:0;width:100%}.hymn-meta .linklike{margin-left:0}.hymn-body{padding:16px;font-size:18px}}
+@media(max-width:700px){.topbar{flex-wrap:wrap;padding:10px 0}.top-tabs{order:3;width:100%;justify-content:center}.top-tab{flex:1}.topbar-eyebrow{order:2;margin-left:auto}}

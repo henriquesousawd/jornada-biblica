@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "providers": [
+    {
+      "id": "librivox-genesis-almeida",
+      "name": "LibriVox / Internet Archive",
+      "language": "pt-BR",
+      "narrator": "Leni",
+      "books": ["GEN"],
+      "availability": "genesis-1-50",
+      "licenseStatus": "pending-brazil-review",
+      "offlineAllowed": false,
+      "streamingAllowed": false,
+      "requiresCredential": false,
+      "sourceUrl": "https://librivox.org/4205",
+      "note": "Gravações agrupadas em 10 arquivos de cinco capítulos; offsets por capítulo não foram publicados."
+    },
+    {
+      "id": "bible-brain",
+      "name": "Bible Brain / Faith Comes By Hearing",
+      "language": "multiple",
+      "narrator": "varies by version",
+      "books": ["*"],
+      "availability": "requires-api-catalog-check",
+      "licenseStatus": "requires-provider-authorization",
+      "offlineAllowed": "requires-contract",
+      "streamingAllowed": "requires-contract",
+      "requiresCredential": true,
+      "sourceUrl": "https://www.faithcomesbyhearing.com/audio-bible-resources/bible-brain",
+      "note": "API key e condições do provedor são necessárias; nenhuma chave é aceita no frontend."
+    }
+  ]
+}

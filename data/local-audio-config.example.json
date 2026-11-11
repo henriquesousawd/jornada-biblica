@@ -1,0 +1,26 @@
+{
+  "enabled": false,
+  "warning": "Ative somente após verificar autorização para o uso pretendido no Brasil.",
+  "sources": [
+    {
+      "source": "LibriVox / Internet Archive",
+      "bookId": "GEN",
+      "narrator": "Leni",
+      "licenseStatus": "unverified-in-brazil",
+      "chapters": [1, 2, 3, 4, 5],
+      "audioUrl": "https://archive.org/download/biblia_alm_genesis_librivox/genesis_01_almeida.mp3",
+      "audioStart": 0,
+      "audioEnd": null,
+      "originalPage": "https://librivox.org/4205"
+    },
+    {"source":"LibriVox / Internet Archive","bookId":"GEN","narrator":"Leni","licenseStatus":"unverified-in-brazil","chapters":[6,7,8,9,10],"audioUrl":"https://archive.org/download/biblia_alm_genesis_librivox/genesis_02_almeida.mp3","originalPage":"https://librivox.org/4205"},
+    {"source":"LibriVox / Internet Archive","bookId":"GEN","narrator":"Leni","licenseStatus":"unverified-in-brazil","chapters":[11,12,13,14,15],"audioUrl":"https://archive.org/download/biblia_alm_genesis_librivox/genesis_03_almeida.mp3","originalPage":"https://librivox.org/4205"},
+    {"source":"LibriVox / Internet Archive","bookId":"GEN","narrator":"Leni","licenseStatus":"unverified-in-brazil","chapters":[16,17,18,19,20],"audioUrl":"https://archive.org/download/biblia_alm_genesis_librivox/genesis_04_almeida.mp3","originalPage":"https://librivox.org/4205"},
+    {"source":"LibriVox / Internet Archive","bookId":"GEN","narrator":"Leni","licenseStatus":"unverified-in-brazil","chapters":[21,22,23,24,25],"audioUrl":"https://archive.org/download/biblia_alm_genesis_librivox/genesis_05_almeida.mp3","originalPage":"https://librivox.org/4205"},
+    {"source":"LibriVox / Internet Archive","bookId":"GEN","narrator":"Leni","licenseStatus":"unverified-in-brazil","chapters":[26,27,28,29,30],"audioUrl":"https://archive.org/download/biblia_alm_genesis_librivox/genesis_06_almeida.mp3","originalPage":"https://librivox.org/4205"},
+    {"source":"LibriVox / Internet Archive","bookId":"GEN","narrator":"Leni","licenseStatus":"unverified-in-brazil","chapters":[31,32,33,34,35],"audioUrl":"https://archive.org/download/biblia_alm_genesis_librivox/genesis_07_almeida.mp3","originalPage":"https://librivox.org/4205"},
+    {"source":"LibriVox / Internet Archive","bookId":"GEN","narrator":"Leni","licenseStatus":"unverified-in-brazil","chapters":[36,37,38,39,40],"audioUrl":"https://archive.org/download/biblia_alm_genesis_librivox/genesis_08_almeida.mp3","originalPage":"https://librivox.org/4205"},
+    {"source":"LibriVox / Internet Archive","bookId":"GEN","narrator":"Leni","licenseStatus":"unverified-in-brazil","chapters":[41,42,43,44,45],"audioUrl":"https://archive.org/download/biblia_alm_genesis_librivox/genesis_09_almeida.mp3","originalPage":"https://librivox.org/4205"},
+    {"source":"LibriVox / Internet Archive","bookId":"GEN","narrator":"Leni","licenseStatus":"unverified-in-brazil","chapters":[46,47,48,49,50],"audioUrl":"https://archive.org/download/biblia_alm_genesis_librivox/genesis_10_almeida.mp3","originalPage":"https://librivox.org/4205"}
+  ]
+}
